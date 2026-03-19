@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificate of Analysis | The Optimized Human</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{--bg:#1A1A1A;--card:#222;--bdr:#333;--accent:#AC66A7;--accent2:rgba(172,102,167,.15);--white:#fff;--t2:#999;--t3:#666}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min-height:100vh}
+.container{max-width:1200px;margin:0 auto;padding:40px 24px}
+.header{text-align:center;margin-bottom:40px}
+.header img.logo{height:60px;margin-bottom:20px}
+.header h1{font-size:32px;font-weight:700;margin-bottom:8px}
+.header p{color:var(--t2);font-size:15px;font-weight:300;max-width:600px;margin:0 auto}
+.search-bar{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:200px;background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px 16px;color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.search-bar input:focus{border-color:var(--accent)}
+.search-bar select{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:12px 16px;color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;outline:none;-webkit-appearance:none;cursor:pointer;min-width:180px}
+.search-bar select:focus{border-color:var(--accent)}
+.cat-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.cat-btn{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:8px 16px;color:var(--t2);font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.cat-btn:hover,.cat-btn.active{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.cat-header{font-size:18px;font-weight:700;color:var(--accent);padding:20px 0 12px;border-bottom:1px solid var(--bdr);margin-bottom:16px;grid-column:1/-1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.coa-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;transition:border-color .2s,transform .2s}
+.coa-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.coa-thumb{cursor:pointer;overflow:hidden;height:280px;display:flex;align-items:center;justify-content:center;background:#181818}
+.coa-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.coa-card:hover .coa-thumb img{transform:scale(1.03)}
+.coa-info{padding:12px 14px}
+.coa-product{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px}
+.coa-file{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);word-break:break-all}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;justify-content:center;align-items:center;padding:20px}
+.modal-overlay.active{display:flex}
+.modal-content{max-width:90vw;max-height:90vh;position:relative}
+.modal-content img{max-width:100%;max-height:85vh;border-radius:8px}
+.modal-title{text-align:center;font-size:16px;font-weight:600;color:var(--white);margin-top:12px}
+.modal-close{position:absolute;top:-40px;right:0;background:var(--accent);border:none;color:var(--bg);width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center}
+.count{color:var(--t3);font-size:13px;margin-bottom:16px}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--t3);font-size:16px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Certificate of Analysis</h1>
+    <p>Every batch undergoes comprehensive third-party testing. Click any COA to view full details including HPLC purity, mass spectrometry, and batch data.</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search by product name or batch number..." oninput="filterCards()">
+    <select id="productFilter" onchange="filterCards()">
+      <option value="">All Products</option>
+      <option value="5-Amino-1MQ">5-Amino-1MQ</option><option value="AHK-Cu">AHK-Cu</option><option value="AOD-9604">AOD-9604</option><option value="ARA-290">ARA-290</option><option value="Acetic Acid">Acetic Acid</option><option value="Astaxanthin">Astaxanthin</option><option value="B12">B12</option><option value="BPC-157">BPC-157</option><option value="Bacteriostatic Water">Bacteriostatic Water</option><option value="CJC-1295 + Ipamorelin">CJC-1295 + Ipamorelin</option><option value="Cagrilintide">Cagrilintide</option><option value="Centella Asiatica">Centella Asiatica</option><option value="DSIP">DSIP</option><option value="Epithalon">Epithalon</option><option value="FOXO4-DRI">FOXO4-DRI</option><option value="Fragment 176-191">Fragment 176-191</option><option value="GHK-Cu">GHK-Cu</option><option value="GHRP-2">GHRP-2</option><option value="GHRP-6">GHRP-6</option><option value="GLOW">GLOW</option><option value="GLP-1S (Semaglutide)">GLP-1S (Semaglutide)</option><option value="GLP-2T (Tirzepatide)">GLP-2T (Tirzepatide)</option><option value="GLP-3R (Retatrutide)">GLP-3R (Retatrutide)</option><option value="Glutathione">Glutathione</option><option value="IGF-LR3">IGF-LR3</option><option value="ION-2T">ION-2T</option><option value="Ipamorelin">Ipamorelin</option><option value="KPV">KPV</option><option value="KSPTN (Kisspeptin)">KSPTN (Kisspeptin)</option><option value="LL-37">LL-37</option><option value="Lemon Bottle">Lemon Bottle</option><option value="MGF">MGF</option><option value="MLT I">MLT I</option><option value="MLT II">MLT II</option><option value="MOTS-c">MOTS-c</option><option value="Methylene Blue">Methylene Blue</option><option value="NAD+">NAD+</option><option value="Oxytocin">Oxytocin</option><option value="PBS (Phosphate Buffer)">PBS (Phosphate Buffer)</option><option value="PDRN Collagen">PDRN Collagen</option><option value="PT-141">PT-141</option><option value="Pinealon">Pinealon</option><option value="SLU-PP-332">SLU-PP-332</option><option value="Selank">Selank</option><option value="Semax">Semax</option><option value="Sermorelin">Sermorelin</option><option value="Snap-8">Snap-8</option><option value="TB-500">TB-500</option><option value="Tesamorelin">Tesamorelin</option><option value="Tesamorelin / Ipamorelin">Tesamorelin / Ipamorelin</option><option value="Thymosin Alpha-1">Thymosin Alpha-1</option><option value="VIP">VIP</option><option value="Wolverine (BPC+TB)">Wolverine (BPC+TB)</option>
+    </select>
+  </div>
+
+  <div class="cat-filters">
+    <button class="cat-btn active" onclick="filterCategory('all')">All</button>
+    <button class="cat-btn" onclick="filterCategory('Metabolic / Weight Loss')">Metabolic / Weight Loss</button><button class="cat-btn" onclick="filterCategory('Growth Hormone / Recovery')">Growth Hormone / Recovery</button><button class="cat-btn" onclick="filterCategory('Healing / Anti-Inflammatory')">Healing / Anti-Inflammatory</button><button class="cat-btn" onclick="filterCategory('Cognitive / Neuro / Sleep')">Cognitive / Neuro / Sleep</button><button class="cat-btn" onclick="filterCategory('Longevity / Cellular')">Longevity / Cellular</button><button class="cat-btn" onclick="filterCategory('Hormonal / Vitamins')">Hormonal / Vitamins</button><button class="cat-btn" onclick="filterCategory('Aesthetic / Cosmetic')">Aesthetic / Cosmetic</button><button class="cat-btn" onclick="filterCategory('Supplies / Accessories')">Supplies / Accessories</button>
+  </div>
+
+  <div class="count" id="count">Showing 154 certificates</div>
+
+  <div class="grid" id="grid">
+    <div class="cat-header" data-category="Metabolic / Weight Loss">Metabolic / Weight Loss</div>
+<div class="coa-card" data-product="GLP-1S (Semaglutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/10928_Ion_Peptides_Semaglutide-scaled.png', 'GLP-1S (Semaglutide)')">
+    <img src="coa_images/10928_Ion_Peptides_Semaglutide-scaled.png" alt="GLP-1S (Semaglutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-1S (Semaglutide)</div>
+    <div class="coa-file">10928_Ion_Peptides_Semaglutide</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-2T (Tirzepatide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Tirzepatide-4_page-0001-scaled.jpg', 'GLP-2T (Tirzepatide)')">
+    <img src="coa_images/Tirzepatide-4_page-0001-scaled.jpg" alt="GLP-2T (Tirzepatide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-2T (Tirzepatide)</div>
+    <div class="coa-file">Tirzepatide-4_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-3R (Retatrutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/GLP-3R-25mg-scaled.jpg', 'GLP-3R (Retatrutide)')">
+    <img src="coa_images/GLP-3R-25mg-scaled.jpg" alt="GLP-3R (Retatrutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-3R (Retatrutide)</div>
+    <div class="coa-file">GLP-3R-25mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-3R (Retatrutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Retra-10mg-scaled.jpg', 'GLP-3R (Retatrutide)')">
+    <img src="coa_images/Retra-10mg-scaled.jpg" alt="GLP-3R (Retatrutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-3R (Retatrutide)</div>
+    <div class="coa-file">Retra-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-3R (Retatrutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Retra-30mg-scaled.jpg', 'GLP-3R (Retatrutide)')">
+    <img src="coa_images/Retra-30mg-scaled.jpg" alt="GLP-3R (Retatrutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-3R (Retatrutide)</div>
+    <div class="coa-file">Retra-30mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-3R (Retatrutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Retraatutdide-5_page-0001-scaled.jpg', 'GLP-3R (Retatrutide)')">
+    <img src="coa_images/Retraatutdide-5_page-0001-scaled.jpg" alt="GLP-3R (Retatrutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-3R (Retatrutide)</div>
+    <div class="coa-file">Retraatutdide-5_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLP-3R (Retatrutide)" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/glp3r-50mg-scaled.jpg', 'GLP-3R (Retatrutide)')">
+    <img src="coa_images/glp3r-50mg-scaled.jpg" alt="GLP-3R (Retatrutide) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLP-3R (Retatrutide)</div>
+    <div class="coa-file">glp3r-50mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Cagrilintide" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Cagri-10mg-X2-2-6-26-scaled.jpg', 'Cagrilintide')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Cagri-10mg-X2-2-6-26-scaled.jpg" alt="Cagrilintide COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Cagrilintide</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Cagri-10mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Cagrilintide" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Cagri-5mg-X2-2-6-26-scaled.jpg', 'Cagrilintide')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Cagri-5mg-X2-2-6-26-scaled.jpg" alt="Cagrilintide COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Cagrilintide</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Cagri-5mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Lemon Bottle" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Lemon-Bottle-10ml-scaled.jpg', 'Lemon Bottle')">
+    <img src="coa_images/Lemon-Bottle-10ml-scaled.jpg" alt="Lemon Bottle COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Lemon Bottle</div>
+    <div class="coa-file">Lemon-Bottle-10ml</div>
+  </div>
+</div>
+<div class="coa-card" data-product="ION-2T" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-ION-2T-10mg-X3-03-14-26-scaled.jpg', 'ION-2T')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-ION-2T-10mg-X3-03-14-26-scaled.jpg" alt="ION-2T COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">ION-2T</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-ION-2T-10mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="ION-2T" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-ION-2T-20mg-X3-03-14-26-scaled.jpg', 'ION-2T')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-ION-2T-20mg-X3-03-14-26-scaled.jpg" alt="ION-2T COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">ION-2T</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-ION-2T-20mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="ION-2T" data-category="Metabolic / Weight Loss">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-ION-2T-40mg-X3-03-14-26-scaled.jpg', 'ION-2T')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-ION-2T-40mg-X3-03-14-26-scaled.jpg" alt="ION-2T COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">ION-2T</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-ION-2T-40mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Growth Hormone / Recovery">Growth Hormone / Recovery</div>
+<div class="coa-card" data-product="AOD-9604" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/AOD-page-0-scaled.jpg', 'AOD-9604')">
+    <img src="coa_images/AOD-page-0-scaled.jpg" alt="AOD-9604 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">AOD-9604</div>
+    <div class="coa-file">AOD-page-0</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHRP-2" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-GHRP-2-5mg-X2-1-29-26-scaled.jpg', 'GHRP-2')">
+    <img src="coa_images/Summary-Report-Ion-GHRP-2-5mg-X2-1-29-26-scaled.jpg" alt="GHRP-2 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHRP-2</div>
+    <div class="coa-file">Summary-Report-Ion-GHRP-2-5mg-X2-1-29-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHRP-6" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/GHRP6-5mg.jpg', 'GHRP-6')">
+    <img src="coa_images/GHRP6-5mg.jpg" alt="GHRP-6 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHRP-6</div>
+    <div class="coa-file">GHRP6-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Ipamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Ipamorelin-5mg-1.jpg', 'Ipamorelin')">
+    <img src="coa_images/Ipamorelin-5mg-1.jpg" alt="Ipamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Ipamorelin</div>
+    <div class="coa-file">Ipamorelin-5mg-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Ipamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Ipramorelin_page-0001-scaled.jpg', 'Ipamorelin')">
+    <img src="coa_images/Ipramorelin_page-0001-scaled.jpg" alt="Ipamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Ipamorelin</div>
+    <div class="coa-file">Ipramorelin_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="IGF-LR3" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-IGF-1-LR3-1mg-X3-03-14-26-scaled.jpg', 'IGF-LR3')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-IGF-1-LR3-1mg-X3-03-14-26-scaled.jpg" alt="IGF-LR3 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">IGF-LR3</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-IGF-1-LR3-1mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Sermorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Serm-5mg-scaled.jpg', 'Sermorelin')">
+    <img src="coa_images/Serm-5mg-scaled.jpg" alt="Sermorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Sermorelin</div>
+    <div class="coa-file">Serm-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Sermorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Sermorelin-15mg-1.jpg', 'Sermorelin')">
+    <img src="coa_images/Sermorelin-15mg-1.jpg" alt="Sermorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Sermorelin</div>
+    <div class="coa-file">Sermorelin-15mg-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Sermorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Sermorelin-5mg-scaled.jpg', 'Sermorelin')">
+    <img src="coa_images/Sermorelin-5mg-scaled.jpg" alt="Sermorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Sermorelin</div>
+    <div class="coa-file">Sermorelin-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Tesamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Tesa-10mg-X3-03-14-26-1-scaled.jpg', 'Tesamorelin')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Tesa-10mg-X3-03-14-26-1-scaled.jpg" alt="Tesamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Tesamorelin</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Tesa-10mg-X3-03-14-26-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Tesamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Tesamorelin-5mg-scaled.jpg', 'Tesamorelin')">
+    <img src="coa_images/Tesamorelin-5mg-scaled.jpg" alt="Tesamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Tesamorelin</div>
+    <div class="coa-file">Tesamorelin-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Tesamorelin / Ipamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/TesIpa5-5mg-scaled.jpg', 'Tesamorelin / Ipamorelin')">
+    <img src="coa_images/TesIpa5-5mg-scaled.jpg" alt="Tesamorelin / Ipamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Tesamorelin / Ipamorelin</div>
+    <div class="coa-file">TesIpa5-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="CJC-1295 + Ipamorelin" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-CJCIpa-10mg-X2-02-13-26-scaled.jpg', 'CJC-1295 + Ipamorelin')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-CJCIpa-10mg-X2-02-13-26-scaled.jpg" alt="CJC-1295 + Ipamorelin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">CJC-1295 + Ipamorelin</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-CJCIpa-10mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Fragment 176-191" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/Frag-5mg-scaled.jpg', 'Fragment 176-191')">
+    <img src="coa_images/Frag-5mg-scaled.jpg" alt="Fragment 176-191 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Fragment 176-191</div>
+    <div class="coa-file">Frag-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MGF" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/mgf-2mg-scaled.jpg', 'MGF')">
+    <img src="coa_images/mgf-2mg-scaled.jpg" alt="MGF COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MGF</div>
+    <div class="coa-file">mgf-2mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MGF" data-category="Growth Hormone / Recovery">
+  <div class="coa-thumb" onclick="openModal('coa_images/peg-mgf-2mg-scaled.jpg', 'MGF')">
+    <img src="coa_images/peg-mgf-2mg-scaled.jpg" alt="MGF COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MGF</div>
+    <div class="coa-file">peg-mgf-2mg</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Healing / Anti-Inflammatory">Healing / Anti-Inflammatory</div>
+<div class="coa-card" data-product="BPC-157" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/BPC-157_page-0001-scaled.jpg', 'BPC-157')">
+    <img src="coa_images/BPC-157_page-0001-scaled.jpg" alt="BPC-157 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">BPC-157</div>
+    <div class="coa-file">BPC-157_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="BPC-157" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/bpc-157-5mg-scaled.jpg', 'BPC-157')">
+    <img src="coa_images/bpc-157-5mg-scaled.jpg" alt="BPC-157 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">BPC-157</div>
+    <div class="coa-file">bpc-157-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="TB-500" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-BPCTB4Cartalax-10-10-20mg-X3-02-26-26-scaled.jpg', 'TB-500')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-BPCTB4Cartalax-10-10-20mg-X3-02-26-26-scaled.jpg" alt="TB-500 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">TB-500</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-BPCTB4Cartalax-10-10-20mg-X3-02-26-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="TB-500" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-TB-500-10mg-X3-03-14-26-scaled.jpg', 'TB-500')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-TB-500-10mg-X3-03-14-26-scaled.jpg" alt="TB-500 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">TB-500</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-TB-500-10mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="LL-37" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/LL37-5mg.jpg', 'LL-37')">
+    <img src="coa_images/LL37-5mg.jpg" alt="LL-37 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">LL-37</div>
+    <div class="coa-file">LL37-5mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="KPV" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-KPV-10mg-X3-03-14-26-scaled.jpg', 'KPV')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-KPV-10mg-X3-03-14-26-scaled.jpg" alt="KPV COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">KPV</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-KPV-10mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="ARA-290" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/ARA-290-50mg-1.jpg', 'ARA-290')">
+    <img src="coa_images/ARA-290-50mg-1.jpg" alt="ARA-290 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">ARA-290</div>
+    <div class="coa-file">ARA-290-50mg-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Wolverine (BPC+TB)" data-category="Healing / Anti-Inflammatory">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Wolverine-20mg-X2-02-13-26-scaled.jpg', 'Wolverine (BPC+TB)')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Wolverine-20mg-X2-02-13-26-scaled.jpg" alt="Wolverine (BPC+TB) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Wolverine (BPC+TB)</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Wolverine-20mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Cognitive / Neuro / Sleep">Cognitive / Neuro / Sleep</div>
+<div class="coa-card" data-product="Semax" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Semax10mg-1.jpg', 'Semax')">
+    <img src="coa_images/Semax10mg-1.jpg" alt="Semax COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Semax</div>
+    <div class="coa-file">Semax10mg-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Semax" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/semax-10mg-scaled.jpg', 'Semax')">
+    <img src="coa_images/semax-10mg-scaled.jpg" alt="Semax COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Semax</div>
+    <div class="coa-file">semax-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Selank" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Selank-N-Aceytl-10mg-scaled.jpg', 'Selank')">
+    <img src="coa_images/Selank-N-Aceytl-10mg-scaled.jpg" alt="Selank COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Selank</div>
+    <div class="coa-file">Selank-N-Aceytl-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Selank" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Semax-%E2%88%95-Selank-1%EA%9E%891-20mg-X3-03-14-26-scaled.jpg', 'Selank')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Semax-%E2%88%95-Selank-1%EA%9E%891-20mg-X3-03-14-26-scaled.jpg" alt="Selank COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Selank</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Semax-%E2%88%95-Selank-1%EA%9E%891-20mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Selank" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/selank-10mg-scaled.jpg', 'Selank')">
+    <img src="coa_images/selank-10mg-scaled.jpg" alt="Selank COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Selank</div>
+    <div class="coa-file">selank-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="DSIP" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/DSIP-10mg-2-scaled.jpg', 'DSIP')">
+    <img src="coa_images/DSIP-10mg-2-scaled.jpg" alt="DSIP COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">DSIP</div>
+    <div class="coa-file">DSIP-10mg-2</div>
+  </div>
+</div>
+<div class="coa-card" data-product="DSIP" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-DSIP-5mg-X2-02-13-26-scaled.jpg', 'DSIP')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-DSIP-5mg-X2-02-13-26-scaled.jpg" alt="DSIP COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">DSIP</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-DSIP-5mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="DSIP" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/dsip-15mg-scaled.jpg', 'DSIP')">
+    <img src="coa_images/dsip-15mg-scaled.jpg" alt="DSIP COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">DSIP</div>
+    <div class="coa-file">dsip-15mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Pinealon" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Pinealon-10mg-scaled.jpg', 'Pinealon')">
+    <img src="coa_images/Pinealon-10mg-scaled.jpg" alt="Pinealon COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Pinealon</div>
+    <div class="coa-file">Pinealon-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MLT I" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/MT-1-10mg.jpg', 'MLT I')">
+    <img src="coa_images/MT-1-10mg.jpg" alt="MLT I COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MLT I</div>
+    <div class="coa-file">MT-1-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MLT II" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-MT-II-10mg-X3-03-14-26-scaled.jpg', 'MLT II')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-MT-II-10mg-X3-03-14-26-scaled.jpg" alt="MLT II COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MLT II</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-MT-II-10mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Methylene Blue" data-category="Cognitive / Neuro / Sleep">
+  <div class="coa-thumb" onclick="openModal('coa_images/meth-blue-scaled.jpg', 'Methylene Blue')">
+    <img src="coa_images/meth-blue-scaled.jpg" alt="Methylene Blue COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Methylene Blue</div>
+    <div class="coa-file">meth-blue</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Longevity / Cellular">Longevity / Cellular</div>
+<div class="coa-card" data-product="5-Amino-1MQ" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/5-amino-1q-50mg-scaled.jpg', '5-Amino-1MQ')">
+    <img src="coa_images/5-amino-1q-50mg-scaled.jpg" alt="5-Amino-1MQ COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">5-Amino-1MQ</div>
+    <div class="coa-file">5-amino-1q-50mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="5-Amino-1MQ" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-5-Amino-1MQ-5mg-X3-02-26-26-scaled.jpg', '5-Amino-1MQ')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-5-Amino-1MQ-5mg-X3-02-26-26-scaled.jpg" alt="5-Amino-1MQ COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">5-Amino-1MQ</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-5-Amino-1MQ-5mg-X3-02-26-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="5-Amino-1MQ" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-5-Amino-1MQ-mg-X2-02-13-26-scaled.jpg', '5-Amino-1MQ')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-5-Amino-1MQ-mg-X2-02-13-26-scaled.jpg" alt="5-Amino-1MQ COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">5-Amino-1MQ</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-5-Amino-1MQ-mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Epithalon" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Epithalon-50mg-scaled.jpg', 'Epithalon')">
+    <img src="coa_images/Epithalon-50mg-scaled.jpg" alt="Epithalon COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Epithalon</div>
+    <div class="coa-file">Epithalon-50mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Epithalon" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Epi-10mg-X3-03-14-26-scaled.jpg', 'Epithalon')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Epi-10mg-X3-03-14-26-scaled.jpg" alt="Epithalon COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Epithalon</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Epi-10mg-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MOTS-c" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/MOTSC-10mg-scaled.jpg', 'MOTS-c')">
+    <img src="coa_images/MOTSC-10mg-scaled.jpg" alt="MOTS-c COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MOTS-c</div>
+    <div class="coa-file">MOTSC-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="MOTS-c" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-MOTS-40mg-X2-2-6-26-scaled.jpg', 'MOTS-c')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-MOTS-40mg-X2-2-6-26-scaled.jpg" alt="MOTS-c COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">MOTS-c</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-MOTS-40mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="NAD+" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/NAD-BUF-500mg-scaled.jpg', 'NAD+')">
+    <img src="coa_images/NAD-BUF-500mg-scaled.jpg" alt="NAD+ COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">NAD+</div>
+    <div class="coa-file">NAD-BUF-500mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="NAD+" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-NAD-1000mg-X2-2-6-26-scaled.jpg', 'NAD+')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-NAD-1000mg-X2-2-6-26-scaled.jpg" alt="NAD+ COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">NAD+</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-NAD-1000mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="FOXO4-DRI" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/fox4-10mg-scaled.jpg', 'FOXO4-DRI')">
+    <img src="coa_images/fox4-10mg-scaled.jpg" alt="FOXO4-DRI COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">FOXO4-DRI</div>
+    <div class="coa-file">fox4-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="SLU-PP-332" data-category="Longevity / Cellular">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-SLU-30mg-X2-02-13-26-scaled.jpg', 'SLU-PP-332')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-SLU-30mg-X2-02-13-26-scaled.jpg" alt="SLU-PP-332 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">SLU-PP-332</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-SLU-30mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Hormonal / Vitamins">Hormonal / Vitamins</div>
+<div class="coa-card" data-product="B12" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-B12-10mg-X2-02-13-26-scaled.jpg', 'B12')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-B12-10mg-X2-02-13-26-scaled.jpg" alt="B12 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">B12</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-B12-10mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="B12" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Shay-Methyl-B12-10ml-03-14-26-scaled.jpg', 'B12')">
+    <img src="coa_images/Summary-Report-Shay-Methyl-B12-10ml-03-14-26-scaled.jpg" alt="B12 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">B12</div>
+    <div class="coa-file">Summary-Report-Shay-Methyl-B12-10ml-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="B12" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/b12-10ml-scaled.jpg', 'B12')">
+    <img src="coa_images/b12-10ml-scaled.jpg" alt="B12 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">B12</div>
+    <div class="coa-file">b12-10ml</div>
+  </div>
+</div>
+<div class="coa-card" data-product="PT-141" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/PT-141-10mg-scaled.jpg', 'PT-141')">
+    <img src="coa_images/PT-141-10mg-scaled.jpg" alt="PT-141 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">PT-141</div>
+    <div class="coa-file">PT-141-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="VIP" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/VIP-10mg.jpg', 'VIP')">
+    <img src="coa_images/VIP-10mg.jpg" alt="VIP COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">VIP</div>
+    <div class="coa-file">VIP-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Thymosin Alpha-1" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-TA-1-10mg-X2-02-13-26-scaled.jpg', 'Thymosin Alpha-1')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-TA-1-10mg-X2-02-13-26-scaled.jpg" alt="Thymosin Alpha-1 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Thymosin Alpha-1</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-TA-1-10mg-X2-02-13-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Thymosin Alpha-1" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Thymalin-10mg-X3-02-26-26_page-0001-scaled.jpg', 'Thymosin Alpha-1')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Thymalin-10mg-X3-02-26-26_page-0001-scaled.jpg" alt="Thymosin Alpha-1 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Thymosin Alpha-1</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Thymalin-10mg-X3-02-26-26_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="KSPTN (Kisspeptin)" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Kiss-10mg-X2-2-6-26_page-0001-scaled.jpg', 'KSPTN (Kisspeptin)')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Kiss-10mg-X2-2-6-26_page-0001-scaled.jpg" alt="KSPTN (Kisspeptin) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">KSPTN (Kisspeptin)</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Kiss-10mg-X2-2-6-26_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Oxytocin" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Oxy-2mg.jpg', 'Oxytocin')">
+    <img src="coa_images/Oxy-2mg.jpg" alt="Oxytocin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Oxytocin</div>
+    <div class="coa-file">Oxy-2mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Glutathione" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/Glutha-750mg-scaled.jpg', 'Glutathione')">
+    <img src="coa_images/Glutha-750mg-scaled.jpg" alt="Glutathione COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Glutathione</div>
+    <div class="coa-file">Glutha-750mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Glutathione" data-category="Hormonal / Vitamins">
+  <div class="coa-thumb" onclick="openModal('coa_images/glut-500mg-scaled.jpg', 'Glutathione')">
+    <img src="coa_images/glut-500mg-scaled.jpg" alt="Glutathione COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Glutathione</div>
+    <div class="coa-file">glut-500mg</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Aesthetic / Cosmetic">Aesthetic / Cosmetic</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-HLA-Sheet-Mask-03-14-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-HLA-Sheet-Mask-03-14-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-HLA-Sheet-Mask-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-Tallow-Honey-Balm-03-14-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-Tallow-Honey-Balm-03-14-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">FT-IR-Summary-Report-Ion-Peptide-GHK-Cu-Tallow-Honey-Balm-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-1g-Raw-Material-X3-03-14-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-1g-Raw-Material-X3-03-14-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">FT-IR-Summary-Report-Shay-GHK-Cu-1g-Raw-Material-X3-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-Conditioner-03-15-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-Conditioner-03-15-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">FT-IR-Summary-Report-Shay-GHK-Cu-Conditioner-03-15-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-Shampoo-03-15-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/FT-IR-Summary-Report-Shay-GHK-Cu-Shampoo-03-15-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">FT-IR-Summary-Report-Shay-GHK-Cu-Shampoo-03-15-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/GhkCu-100mg-page-0-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/GhkCu-100mg-page-0-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">GhkCu-100mg-page-0</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-GHK-Cu-cap-cream-1-29-26-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/Summary-Report-GHK-Cu-cap-cream-1-29-26-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">Summary-Report-GHK-Cu-cap-cream-1-29-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/ghkcukpv-60mg-scaled.jpg', 'GHK-Cu')">
+    <img src="coa_images/ghkcukpv-60mg-scaled.jpg" alt="GHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GHK-Cu</div>
+    <div class="coa-file">ghkcukpv-60mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Snap-8" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Snap8-10mg.jpg', 'Snap-8')">
+    <img src="coa_images/Snap8-10mg.jpg" alt="Snap-8 COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Snap-8</div>
+    <div class="coa-file">Snap8-10mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLOW" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/GLOW_page-0001-scaled.jpg', 'GLOW')">
+    <img src="coa_images/GLOW_page-0001-scaled.jpg" alt="GLOW COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLOW</div>
+    <div class="coa-file">GLOW_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="GLOW" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-GLOW-70mg-X2-2-6-26-scaled.jpg', 'GLOW')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-GLOW-70mg-X2-2-6-26-scaled.jpg" alt="GLOW COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">GLOW</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-GLOW-70mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="AHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/AHK-cu-50mg-scaled.jpg', 'AHK-Cu')">
+    <img src="coa_images/AHK-cu-50mg-scaled.jpg" alt="AHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">AHK-Cu</div>
+    <div class="coa-file">AHK-cu-50mg</div>
+  </div>
+</div>
+<div class="coa-card" data-product="AHK-Cu" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-AHK-Cu-100mg-X2-2-6-26-scaled.jpg', 'AHK-Cu')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-AHK-Cu-100mg-X2-2-6-26-scaled.jpg" alt="AHK-Cu COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">AHK-Cu</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-AHK-Cu-100mg-X2-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="PDRN Collagen" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/FT-IR-Summary-Report-Ion-Peptide-PDRN-Pink-Face-Cream-03-14-26-scaled.jpg', 'PDRN Collagen')">
+    <img src="coa_images/FT-IR-Summary-Report-Ion-Peptide-PDRN-Pink-Face-Cream-03-14-26-scaled.jpg" alt="PDRN Collagen COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">PDRN Collagen</div>
+    <div class="coa-file">FT-IR-Summary-Report-Ion-Peptide-PDRN-Pink-Face-Cream-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="PDRN Collagen" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-PDRN-cap-cream-1-29-26-scaled.jpg', 'PDRN Collagen')">
+    <img src="coa_images/Summary-Report-PDRN-cap-cream-1-29-26-scaled.jpg" alt="PDRN Collagen COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">PDRN Collagen</div>
+    <div class="coa-file">Summary-Report-PDRN-cap-cream-1-29-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Astaxanthin" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Astraxanthin-cap-cream-2-6-26-scaled.jpg', 'Astaxanthin')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Astraxanthin-cap-cream-2-6-26-scaled.jpg" alt="Astaxanthin COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Astaxanthin</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Astraxanthin-cap-cream-2-6-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Centella Asiatica" data-category="Aesthetic / Cosmetic">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-Peptide-Gotu-Kola-cap-cream-2-6-26-scaled.jpg', 'Centella Asiatica')">
+    <img src="coa_images/Summary-Report-Ion-Peptide-Gotu-Kola-cap-cream-2-6-26-scaled.jpg" alt="Centella Asiatica COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Centella Asiatica</div>
+    <div class="coa-file">Summary-Report-Ion-Peptide-Gotu-Kola-cap-cream-2-6-26</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Supplies / Accessories">Supplies / Accessories</div>
+<div class="coa-card" data-product="Bacteriostatic Water" data-category="Supplies / Accessories">
+  <div class="coa-thumb" onclick="openModal('coa_images/BAC-WATER-2_page-0001-scaled.jpg', 'Bacteriostatic Water')">
+    <img src="coa_images/BAC-WATER-2_page-0001-scaled.jpg" alt="Bacteriostatic Water COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Bacteriostatic Water</div>
+    <div class="coa-file">BAC-WATER-2_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Bacteriostatic Water" data-category="Supplies / Accessories">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Shay-Bacteriostatic-Water-30ml-03-14-26-scaled.jpg', 'Bacteriostatic Water')">
+    <img src="coa_images/Summary-Report-Shay-Bacteriostatic-Water-30ml-03-14-26-scaled.jpg" alt="Bacteriostatic Water COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Bacteriostatic Water</div>
+    <div class="coa-file">Summary-Report-Shay-Bacteriostatic-Water-30ml-03-14-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="PBS (Phosphate Buffer)" data-category="Supplies / Accessories">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-PBS-10ml-1-29-26-scaled.jpg', 'PBS (Phosphate Buffer)')">
+    <img src="coa_images/Summary-Report-Ion-PBS-10ml-1-29-26-scaled.jpg" alt="PBS (Phosphate Buffer) COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">PBS (Phosphate Buffer)</div>
+    <div class="coa-file">Summary-Report-Ion-PBS-10ml-1-29-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Acetic Acid" data-category="Supplies / Accessories">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Ion-AA-Water-10ml-1-29-26-scaled.jpg', 'Acetic Acid')">
+    <img src="coa_images/Summary-Report-Ion-AA-Water-10ml-1-29-26-scaled.jpg" alt="Acetic Acid COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Acetic Acid</div>
+    <div class="coa-file">Summary-Report-Ion-AA-Water-10ml-1-29-26</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Acetic Acid" data-category="Supplies / Accessories">
+  <div class="coa-thumb" onclick="openModal('coa_images/Summary-Report-Shay-Acetic-Acid-10ml-03-14-26-scaled.jpg', 'Acetic Acid')">
+    <img src="coa_images/Summary-Report-Shay-Acetic-Acid-10ml-03-14-26-scaled.jpg" alt="Acetic Acid COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Acetic Acid</div>
+    <div class="coa-file">Summary-Report-Shay-Acetic-Acid-10ml-03-14-26</div>
+  </div>
+</div>
+<div class="cat-header" data-category="Batch COAs">Batch COAs (Lab Reports)</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/COA2609-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/COA2609-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">COA2609</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/COA2610-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/COA2610-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">COA2610</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/COA2612-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/COA2612-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">COA2612</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/COA2615-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/COA2615-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">COA2615</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512020061-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512020061-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512020061</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512020062-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512020062-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512020062</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300112-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300112-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300112</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300115-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300115-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300115</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300118-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300118-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300118</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300121-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300121-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300121</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300122-1_page-0001-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300122-1_page-0001-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300122-1_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300123-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300123-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300123</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300124-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300124-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300124</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2512300125-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2512300125-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2512300125</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601020136-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601020136-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601020136</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601020140-1-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601020140-1-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601020140-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601020143-1-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601020143-1-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601020143-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601020144-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601020144-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601020144</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601020146-1-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601020146-1-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601020146-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601090011-1-page-0-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601090011-1-page-0-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601090011-1-page-0</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601160120-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601160120-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601160120</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601160124-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601160124-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601160124</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601190061-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601190061-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601190061</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601210096-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601210096-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601210096</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601210099-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601210099-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601210099</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601210101-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601210101-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601210101</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601210103-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601210103-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601210103</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601210105-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601210105-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601210105</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601220067-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601220067-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601220067</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601220069-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601220069-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601220069</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601220071-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601220071-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601220071</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601220073-1-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601220073-1-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601220073-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2601220076-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2601220076-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2601220076</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602030160-1_page-0001-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602030160-1_page-0001-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602030160-1_page-0001</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602040181-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602040181-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602040181</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602040187-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602040187-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602040187</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602040192-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602040192-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602040192</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602040194-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602040194-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602040194</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2602040198-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2602040198-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2602040198</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603020016-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603020016-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603020016</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603020019-1-1-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603020019-1-1-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603020019-1-1</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110152-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110152-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110152</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110153-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110153-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110153</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110154-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110154-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110154</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110155-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110155-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110155</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110156-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110156-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110156</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110157-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110157-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110157</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110158-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110158-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110158</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110159-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110159-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110159</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110160-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110160-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110160</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110161-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110161-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110161</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110162-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110162-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110162</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110163-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110163-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110163</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110164-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110164-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110164</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603110165-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603110165-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603110165</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603170085-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603170085-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603170085</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603170088-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603170088-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603170088</div>
+  </div>
+</div>
+<div class="coa-card" data-product="Batch COA" data-category="Batch COAs">
+  <div class="coa-thumb" onclick="openModal('coa_images/IonP2603170089-scaled.jpg', 'Batch COA')">
+    <img src="coa_images/IonP2603170089-scaled.jpg" alt="Batch COA" loading="lazy">
+  </div>
+  <div class="coa-info">
+    <div class="coa-product">Batch COA</div>
+    <div class="coa-file">IonP2603170089</div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <img id="modal-img" src="" alt="COA">
+    <div class="modal-title" id="modal-title"></div>
+  </div>
+</div>
+
+<script>
+let activeCategory = 'all';
+
+function openModal(src, title) {
+  document.getElementById('modal-img').src = src;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modal')) return;
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function filterCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  filterCards();
+}
+
+function filterCards() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const product = document.getElementById('productFilter').value;
+  const cards = document.querySelectorAll('.coa-card');
+  const headers = document.querySelectorAll('.cat-header');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const p = card.dataset.product.toLowerCase();
+    const c = card.dataset.category;
+    const file = card.querySelector('.coa-file')?.textContent.toLowerCase() || '';
+    const matchSearch = !search || p.includes(search) || file.includes(search);
+    const matchProduct = !product || card.dataset.product === product;
+    const matchCat = activeCategory === 'all' || c === activeCategory;
+    const show = matchSearch && matchProduct && matchCat;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  headers.forEach(h => {
+    const cat = h.dataset.category;
+    const matchCat = activeCategory === 'all' || cat === activeCategory;
+    const hasVisible = [...document.querySelectorAll(`.coa-card[data-category="${cat}"]`)].some(c => c.style.display !== 'none');
+    h.style.display = (matchCat && hasVisible) ? '' : 'none';
+  });
+
+  document.getElementById('count').textContent = `Showing ${visible} certificate${visible !== 1 ? 's' : ''}`;
+}
+</script>
+</body>
+</html>
